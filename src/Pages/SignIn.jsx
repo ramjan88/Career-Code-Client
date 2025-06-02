@@ -1,0 +1,72 @@
+import React, { use } from 'react';
+import signInLotte from '../assets/Lottie/SignInLotte.json'
+import Lottie from 'lottie-react';
+import { AuthContext } from '../Context/AuthContext/AuthContext';
+import { useNavigate } from 'react-router';
+import SocialLogin from './Shared/SocialLogin';
+
+const SignIn = () => {
+  const {SignInUser}=use(AuthContext)
+  const navigate=useNavigate()
+
+  const handleSignIn=(e)=>{
+    e.preventDefault()
+
+    const form=e.target 
+    const formData=new FormData(form)
+    const {email,password}=Object.fromEntries(formData.entries())
+    console.log({email,password});
+
+    //sign in user
+    SignInUser(email,password).then(result=>{
+      console.log(result.user);
+      navigate('/')
+    }).catch(error=>{
+      console.log(error.code);
+    })
+
+
+  }
+  return (
+    <div className="hero bg-base-200 min-h-screen">
+      <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="text-center lg:text-left">
+          <Lottie
+            style={{ width: "200px" }}
+            animationData={signInLotte}
+            loop={true}
+          ></Lottie>
+        </div>
+        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+          <div className="card-body">
+            <h1 className="text-3xl font-bold">SignIn now!</h1>
+
+            <form onSubmit={handleSignIn}>
+              <fieldset className="fieldset">
+                <label className="label">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  className="input"
+                  placeholder="Email"
+                />
+                <label className="label">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  className="input"
+                  placeholder="Password"
+                />
+
+                <button className="btn btn-neutral mt-4">SignIn</button>
+              </fieldset>
+            </form>
+            <SocialLogin></SocialLogin>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SignIn;
