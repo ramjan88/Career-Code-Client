@@ -12,20 +12,23 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: Home
+        Component: Home,
       },
       {
-        path: '/jobs/:id',
-        Component: JobDetails
+        path: "/jobs/:id",
+        Component: JobDetails,
+        loader: ({params}) =>
+          fetch(`http://localhost:5000/jobs/${params.id}`),
       },
       {
-        path: '/register',
-        Component: Register
-      },{
-        path: '/signin',
-        Component: SignIn
-      }
-    ]
+        path: "/register",
+        Component: Register,
+      },
+      {
+        path: "/signin",
+        Component: SignIn,
+      },
+    ],
   },
 ]);
 
