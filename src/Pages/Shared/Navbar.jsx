@@ -3,32 +3,32 @@ import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 
 const Navbar = () => {
-
   const { user, signOutUser } = use(AuthContext);
 
-
-  const handleSignOut=()=>{
-    signOutUser().then(()=>{
-      console.log('sign Out User');
-    }).catch(error=>{
-      console.log(error);
-    })
-  }
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => {
+        console.log("sign Out User");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const links = (
     <>
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="/">Contact Us</NavLink>
+        <NavLink to="/contact">Contact Us</NavLink>
       </li>
       <li>
-        <NavLink to="/">About Us</NavLink>
+        <NavLink to="/about">About Us</NavLink>
       </li>
     </>
   );
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <nav className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -57,7 +57,7 @@ const Navbar = () => {
         <a className="btn btn-ghost text-xl">daisyUI</a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{links}</ul>
+        <ul className="flex gap-3 px-1">{links}</ul>
       </div>
       <div className="navbar-end gap-2">
         {user ? (
@@ -75,7 +75,7 @@ const Navbar = () => {
           </>
         )}
       </div>
-    </div>
+    </nav>
   );
 };
 
