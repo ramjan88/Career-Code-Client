@@ -12,6 +12,7 @@ const JobDetails = () => {
     requirements,
     applicationDeadline,
     salaryRange,
+    _id
   } = useLoaderData();
   return (
     <div className="max-w-screen-lg mx-auto my-10">
@@ -40,7 +41,7 @@ const JobDetails = () => {
           </p>
           <p>Dateline: {applicationDeadline}</p>
           <div className="card-actions justify-end">
-            <Link>
+            <Link to={`/jobapply/${_id}`}>
               <button className="btn btn-primary">Apply Now</button>
             </Link>
           </div>
