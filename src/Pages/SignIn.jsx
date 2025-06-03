@@ -2,12 +2,14 @@ import React, { use } from 'react';
 import signInLotte from '../assets/Lottie/SignInLotte.json'
 import Lottie from 'lottie-react';
 import { AuthContext } from '../Context/AuthContext/AuthContext';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import SocialLogin from './Shared/SocialLogin';
 
 const SignIn = () => {
   const {SignInUser}=use(AuthContext)
   const navigate=useNavigate()
+  const location=useLocation()
+  const from = location.state || "/";
 
   const handleSignIn=(e)=>{
     e.preventDefault()
@@ -20,7 +22,7 @@ const SignIn = () => {
     //sign in user
     SignInUser(email,password).then(result=>{
       console.log(result.user);
-      navigate('/')
+      navigate(from)
     }).catch(error=>{
       console.log(error.code);
     })
@@ -61,7 +63,7 @@ const SignIn = () => {
                 <button className="btn btn-neutral mt-4">SignIn</button>
               </fieldset>
             </form>
-            <SocialLogin></SocialLogin>
+            <SocialLogin from={from}></SocialLogin>
           </div>
         </div>
       </div>

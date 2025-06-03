@@ -3,6 +3,7 @@ import { Link, useLoaderData } from 'react-router';
 
 const JobDetails = () => {
 
+
   const {
     company_logo,
     title,
@@ -29,13 +30,13 @@ const JobDetails = () => {
         <div className="card-body">
           <h2 className="card-title">{title}</h2>
           <p>{description}</p>
-          <p>
+          <div>
             {requirements.map((skill, index) => (
               <div key={index} className="badge m-1 badge-outline">
                 {skill}
               </div>
             ))}
-          </p>
+          </div>
           <p>
             Salary: {salaryRange.min}-{salaryRange.max} {salaryRange.currency}
           </p>

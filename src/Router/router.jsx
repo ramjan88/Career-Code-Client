@@ -18,13 +18,22 @@ const router = createBrowserRouter([
       },
       {
         path: "/jobs/:id",
-        element: <PrivetRouts><JobDetails></JobDetails></PrivetRouts>,
-        loader: ({params}) =>
+        element: (
+          <PrivetRouts>
+            <JobDetails></JobDetails>
+          </PrivetRouts>
+        ),
+        loader: ({ params }) =>
           fetch(`http://localhost:5000/jobs/${params.id}`),
       },
       {
-        path: '/jobapply/:id',
-        element: <PrivetRouts><JobApply></JobApply></PrivetRouts>
+        path: "/jobapply/:id",
+       
+        element: (
+          <PrivetRouts>
+            <JobApply></JobApply>
+          </PrivetRouts>
+        ),
       },
       {
         path: "/register",
@@ -35,6 +44,10 @@ const router = createBrowserRouter([
         Component: SignIn,
       },
     ],
+  },
+  {
+    path: "/*",
+    element: <h1>Page not Found</h1>,
   },
 ]);
 

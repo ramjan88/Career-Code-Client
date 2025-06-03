@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 
 const JobCard = ({ job }) => {
-  console.log(job);
+  // console.log(job);
   const {
     company_logo,
     title,
@@ -28,13 +28,13 @@ const JobCard = ({ job }) => {
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
         <p>{description}</p>
-        <p>
+        <div>
           {requirements.map((skill, index) => (
             <div key={index} className="badge m-1 badge-outline">
               {skill}
             </div>
           ))}
-        </p>
+        </div>
         <p>
           Salary: {salaryRange.min}-{salaryRange.max} {salaryRange.currency}
         </p>
